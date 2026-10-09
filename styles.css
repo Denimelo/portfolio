@@ -128,11 +128,17 @@ p { margin: 0 0 1rem; }
 .hero__curve path {
   fill: none; stroke: var(--saffron); stroke-width: 3; stroke-linecap: round;
   vector-effect: non-scaling-stroke;
-  stroke-dasharray: 1600; stroke-dashoffset: 1600;
-  animation: draw 2.2s cubic-bezier(.6,.1,.2,1) .3s forwards;
   opacity: .85;
 }
-@keyframes draw { to { stroke-dashoffset: 0; } }
+/* Pointe du « stylo » qui trace la courbe (animations.js) */
+.hero__pen { fill: var(--saffron); stroke: var(--paper); stroke-width: 3; opacity: 0; transition: opacity .4s; }
+.hero__pen.is-on { opacity: 1; }
+.hero__guide { stroke: var(--saffron); stroke-width: 1; stroke-dasharray: 3 5; opacity: 0; transition: opacity .4s; }
+.hero__guide.is-on { opacity: .55; }
+
+/* Badge « en retard » : apparaît après le remplissage des barres */
+.js-anim .node em { opacity: 0; transform: scale(.7); transition: opacity .35s, transform .35s cubic-bezier(.3,1.6,.5,1); }
+.js-anim .node em.is-on { opacity: 1; transform: none; }
 
 .hero__inner {
   position: relative;
@@ -300,6 +306,6 @@ p { margin: 0 0 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero__curve path { animation: none; stroke-dashoffset: 0; }
+
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .node em { color: #0e1530; } }
