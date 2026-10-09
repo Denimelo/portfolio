@@ -276,6 +276,16 @@ p { margin: 0 0 1rem; }
 .timeline h3 { font-size: 1.3rem; font-weight: 600; }
 .where { color: var(--cobalt); font-family: var(--f-display); font-weight: 600; margin: .2rem 0 .6rem; }
 .timeline p:last-child { margin-bottom: 0; max-width: 40em; }
+/* Logo de l'entreprise à côté du poste */
+.org { display: flex; align-items: center; gap: 1rem; }
+.org + p { margin-top: .6rem; }
+.org .where { margin-bottom: 0; }
+.org__logo {
+  flex: none; display: grid; place-items: center;
+  width: 4.5rem; height: 3.25rem; padding: .35rem .45rem;
+  background: #fff; border: 1px solid var(--line); border-radius: .6rem;
+}
+.org__logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
 
 /* ---------- Compétences ---------- */
 .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 3rem; max-width: 52rem; }
