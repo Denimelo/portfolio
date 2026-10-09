@@ -143,4 +143,33 @@
     }, { threshold: 0.45 });
     io.observe(tree);
   }
+
+  // ---------- 3. Apparition des sections au défilement ----------
+  // Chaque groupe apparaît quand il arrive à l'écran ; dans une liste
+  // (parcours, compétences, liens), les éléments arrivent l'un après l'autre.
+  if ("IntersectionObserver" in window) {
+    const single = [
+      ".section__title", ".project__body", ".project__visual",
+      ".about", ".contact__title", ".contact__lede", ".contact__mail",
+    ];
+    const groups = [".timeline > li", ".skills > div", ".contact__links > li"];
+
+    single.forEach(sel => document.querySelectorAll(sel).forEach(el => el.setAttribute("data-reveal", "")));
+    groups.forEach(sel => document.querySelectorAll(sel).forEach((el, i) => {
+      el.setAttribute("data-reveal", "");
+      el.style.setProperty("--reveal-delay", Math.min(i, 4) * 0.08 + "s");
+    }));
+    // Dans un projet, le visuel arrive juste après le texte
+    document.querySelectorAll(".project__visual").forEach(el => el.style.setProperty("--reveal-delay", ".15s"));
+
+    const revealIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-visible");
+        revealIO.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+
+    document.querySelectorAll("[data-reveal]").forEach(el => revealIO.observe(el));
+  }
 })();
