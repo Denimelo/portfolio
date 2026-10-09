@@ -6,7 +6,7 @@
 const EN = {
   skip: "Skip to content",
   "nav.projects": "Projects",
-  "nav.path": "Experience",
+  "nav.path": "Background",
   "nav.skills": "Skills",
   "nav.contact": "Contact",
 
@@ -43,7 +43,9 @@ const EN = {
   "p2.alt1": "Maximaths home page",
   "p2.alt2": "Choosing a class and school year on Maximaths",
 
-  "path.title": "Experience",
+  "path.title": "Background",
+  "path.work": "Work experience",
+  "path.edu": "Education",
   "path.e1.when": "Oct 2026 – Apr 2027",
   "path.e1.role": "Full-stack developer intern",
   "path.e1.desc": "Designing and building an action plan management application within the Business Applications Development unit.",
