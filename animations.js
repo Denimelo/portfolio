@@ -150,12 +150,14 @@
   if ("IntersectionObserver" in window) {
     const single = [
       ".section__title", ".project__body", ".project__visual",
-      ".about", ".contact__title", ".contact__lede", ".contact__mail",
+      ".subhead", ".about", ".contact__title", ".contact__lede", ".contact__mail",
     ];
     const groups = [".timeline > li", ".skills > div", ".contact__links > li"];
 
     single.forEach(sel => document.querySelectorAll(sel).forEach(el => el.setAttribute("data-reveal", "")));
-    groups.forEach(sel => document.querySelectorAll(sel).forEach((el, i) => {
+    groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
+      // rang de l'élément dans sa propre liste (chaque liste repart de zéro)
+      const i = [...el.parentElement.children].indexOf(el);
       el.setAttribute("data-reveal", "");
       el.style.setProperty("--reveal-delay", Math.min(i, 4) * 0.08 + "s");
     }));
